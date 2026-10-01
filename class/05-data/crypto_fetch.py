@@ -1,14 +1,8 @@
-import requests
+import json
 
-url = "https://api.coingecko.com/api/v3/coins/markets"
-params = {
-    "vs_currency": "usd",
-    "order": "market_cap_desc",
-    "per_page": 5,
-    "page": 1,
-}
-response = requests.get(url, params=params, timeout=10)
-response.raise_for_status()
+with open("data/cmc_listings.json", "r") as f:
+    data = json.load(f)
 
-for coin in response.json():
-    print(f"{coin['name']}: ${coin['current_price']} ({coin['price_change_percentage_24h']:.2f}%)")
+for coin in data["data"][:5]:
+    quote = coin["quote"][0]
+    print(f"{coin['name']}: ${quote['price']:.2f} ({quote['percent_change_24h']:.2f}%)")
