@@ -9,7 +9,7 @@ from botocore.exceptions import ClientError
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 log = logging.getLogger(__name__)
 
-# practice-<USER>: globally unique bucket name (not the same as the IAM user)
+# practice-<USER>: bucket names must be globally unique across all of AWS
 bucket_name = f"practice-{os.environ.get('USER', 'unknown')}"
 
 try:

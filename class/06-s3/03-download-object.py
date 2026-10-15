@@ -15,7 +15,7 @@ key = "cloud.jpg"
 local_file = "cloud.jpg"
 
 try:
-    # Unsigned client: teaching objects on ds2022-fall26 are publicly readable
+    # Anonymous client: the boto3 version of --no-sign-request (ds2022-fall26 is public)
     s3 = boto3.client("s3", config=Config(signature_version=UNSIGNED))
     obj = s3.get_object(Bucket=bucket_name, Key=key)
     with open(local_file, "wb") as f:
